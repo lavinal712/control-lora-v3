@@ -68,13 +68,12 @@ check_min_version("0.28.0.dev0")
 
 logger = get_logger(__name__)
 
-CONTROLNET_TARGET_MODULE = ["to_q", "to_k", "to_v", "to_out.0",
-                            "conv", "conv_in", "conv_out", "conv_shortcut", "conv1", "conv2",
-                            "proj", "proj_in", "proj_out", "time_emb_proj",
+CONTROLNET_TARGET_MODULE = ["to_q", "to_k", "to_v", "to_out.0", "proj", "time_emb_proj",
                             "linear_1", "linear_2", "ff.net.2"]
-CONTROLNET_SAVED_MODULE = ["controlnet_cond_embedding.blocks.0", "controlnet_cond_embedding.blocks.1",
-                           "controlnet_cond_embedding.blocks.2", "controlnet_cond_embedding.blocks.3",
-                           "controlnet_cond_embedding.blocks.4", "controlnet_cond_embedding.blocks.5",
+CONTROLNET_SAVED_MODULE = ["controlnet_cond_embedding.conv_in", "controlnet_cond_embedding.blocks.0",
+                           "controlnet_cond_embedding.blocks.1", "controlnet_cond_embedding.blocks.2",
+                           "controlnet_cond_embedding.blocks.3", "controlnet_cond_embedding.blocks.4",
+                           "controlnet_cond_embedding.blocks.5", "controlnet_cond_embedding.conv_out",
                            "controlnet_down_blocks.0", "controlnet_down_blocks.1", "controlnet_down_blocks.2",
                            "controlnet_down_blocks.3", "controlnet_down_blocks.4", "controlnet_down_blocks.5",
                            "controlnet_down_blocks.6", "controlnet_down_blocks.7", "controlnet_down_blocks.8",
