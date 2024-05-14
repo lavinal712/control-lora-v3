@@ -1,5 +1,3 @@
-# control-lora-v3
-
 # ControlLoRA Version 3: A Lightweight Neural Network To Control Stable Diffusion Spatial Information Version 3
 
 ControlLoRA Version 3 is a neural network structure extended from [ControlNet](https://github.com/lllyasviel/ControlNet) to control diffusion models by adding extra conditions.
