@@ -112,7 +112,7 @@ Output:
         author = {lavinal712},
         month = {5},
         title = {{ControlLoRA Version 3: A Lightweight Neural Network To Control Stable Diffusion Spatial Information Version 3}},
-        url = {https://github.com/HighCWu/control-lora-2},
+        url = {https://github.com/lavinal712/control-lora-v3},
         version = {1.0.0},
         year = {2024}
     }
