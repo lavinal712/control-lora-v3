@@ -95,3 +95,13 @@ If you want to train ControlNet, you have already got it. If you got a lora, mer
 ```bash
 python merge_lora.py
 ```
+
+## Test
+
+Original image:
+
+![house](assets/house.png)
+
+Output:
+
+![house_grid](assets/house_grid.png)
