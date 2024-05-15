@@ -35,7 +35,7 @@ accelerate launch train_control_lora.py \
  --output_dir="controlnet-model" \
  --dataset_name="fusing/fill50k" \
  --resolution=512 \
- --learning_rate=1e-4 \
+ --learning_rate=1e-5 \
  --train_batch_size=4 \
  --max_train_steps=100000 \
  --tracker_project_name="controlnet" \
