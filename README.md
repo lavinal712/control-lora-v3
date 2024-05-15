@@ -105,3 +105,14 @@ Original image:
 Output:
 
 ![house_grid](assets/house_grid.png)
+
+## Citation
+
+    @software{lavinal7122024controllorav3,
+        author = {lavinal712},
+        month = {5},
+        title = {{ControlLoRA Version 3: A Lightweight Neural Network To Control Stable Diffusion Spatial Information Version 3}},
+        url = {https://github.com/HighCWu/control-lora-2},
+        version = {1.0.0},
+        year = {2024}
+    }
