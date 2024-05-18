@@ -64,7 +64,7 @@ if is_wandb_available():
     import wandb
 
 # Will error if the minimal version of diffusers is not installed. Remove at your own risks.
-check_min_version("0.28.0.dev0")
+check_min_version("0.27.0.dev0")
 
 logger = get_logger(__name__)
 
@@ -238,9 +238,9 @@ def save_model_card(repo_id: str, image_logs=None, base_model=str, repo_folder=N
             img_str += f"![images_{i})](./images_{i}.png)\n"
 
     model_description = f"""
-# controlnet-{repo_id}
+# sd-control-lora-segmentation-v3-{repo_id}
 
-These are controlnet weights trained on {base_model} with new type of conditioning.
+These are sd-control-lora-segmentation-v3 weights trained on {base_model} with new type of conditioning.
 {img_str}
 """
     model_card = load_or_create_model_card(
@@ -257,7 +257,7 @@ These are controlnet weights trained on {base_model} with new type of conditioni
         "stable-diffusion-diffusers",
         "text-to-image",
         "diffusers",
-        "controlnet",
+        "sd-control-lora-segmentation-v3",
         "diffusers-training",
     ]
     model_card = populate_model_card(model_card, tags=tags)
@@ -278,8 +278,8 @@ def parse_args(input_args=None):
         "--controlnet_model_name_or_path",
         type=str,
         default=None,
-        help="Path to pretrained controlnet model or model identifier from huggingface.co/models."
-        " If not specified controlnet weights are initialized from unet.",
+        help="Path to pretrained sd-control-lora-segmentation-v3 model or model identifier from huggingface.co/models."
+        " If not specified sd-control-lora-segmentation-v3 weights are initialized from unet.",
     )
     parser.add_argument(
         "--revision",
@@ -303,7 +303,7 @@ def parse_args(input_args=None):
     parser.add_argument(
         "--output_dir",
         type=str,
-        default="controlnet-model",
+        default="sd-control-lora-segmentation-v3-model",
         help="The output directory where the model predictions and checkpoints will be written.",
     )
     parser.add_argument(
@@ -507,7 +507,7 @@ def parse_args(input_args=None):
         "--conditioning_image_column",
         type=str,
         default="conditioning_image",
-        help="The column of the dataset containing the controlnet conditioning image.",
+        help="The column of the dataset containing the sd-control-lora-segmentation-v3 conditioning image.",
     )
     parser.add_argument(
         "--caption_column",
@@ -547,7 +547,7 @@ def parse_args(input_args=None):
         default=None,
         nargs="+",
         help=(
-            "A set of paths to the controlnet conditioning image be evaluated every `--validation_steps`"
+            "A set of paths to the sd-control-lora-segmentation-v3 conditioning image be evaluated every `--validation_steps`"
             " and logged to `--report_to`. Provide either a matching number of `--validation_prompt`s, a"
             " a single `--validation_prompt` to be used with all `--validation_image`s, or a single"
             " `--validation_image` that will be used with all `--validation_prompt`s."
@@ -588,6 +588,9 @@ def parse_args(input_args=None):
         default="none",
         help="Bias type for Lora. Can be 'none', 'all' or 'lora_only', only used if use_lora is True",
     )
+    parser.add_argument(
+        "--use_dora", action="store_true", help="Whether or not to use dora instead of lora."
+    )
     parser.add_argument("--custom_dataset", type=str, default=None, help="Custom dataset created by yourself.")
 
     if input_args is not None:
@@ -624,7 +627,7 @@ def parse_args(input_args=None):
 
     if args.resolution % 8 != 0:
         raise ValueError(
-            "`--resolution` must be divisible by 8 for consistently sized encoded images between the VAE and the controlnet encoder."
+            "`--resolution` must be divisible by 8 for consistently sized encoded images between the VAE and the sd-control-lora-segmentation-v3 encoder."
         )
 
     return args
@@ -845,10 +848,10 @@ def main(args):
     )
 
     if args.controlnet_model_name_or_path:
-        logger.info("Loading existing controlnet weights")
+        logger.info("Loading existing sd-control-lora-segmentation-v3 weights")
         controlnet = ControlNetModel.from_pretrained(args.controlnet_model_name_or_path)
     else:
-        logger.info("Initializing controlnet weights from unet")
+        logger.info("Initializing sd-control-lora-segmentation-v3 weights from unet")
         controlnet = ControlNetModel.from_unet(unet)
 
     if args.use_lora:
@@ -859,6 +862,7 @@ def main(args):
             lora_dropout=args.lora_dropout,
             bias=args.lora_bias,
             modules_to_save=CONTROLNET_SAVED_MODULE,
+            use_dora=args.use_dora,
         )
         controlnet = get_peft_model(controlnet, config)
         controlnet.print_trainable_parameters()
@@ -880,7 +884,7 @@ def main(args):
                     weights.pop()
                     model = models[i]
 
-                    sub_dir = "controlnet"
+                    sub_dir = "sd-control-lora-segmentation-v3"
                     model.save_pretrained(os.path.join(output_dir, sub_dir))
 
                     i -= 1
@@ -891,7 +895,7 @@ def main(args):
                 model = models.pop()
 
                 # load diffusers style into model
-                load_model = ControlNetModel.from_pretrained(input_dir, subfolder="controlnet")
+                load_model = ControlNetModel.from_pretrained(input_dir, subfolder="sd-control-lora-segmentation-v3")
                 model.register_to_config(**load_model.config)
 
                 model.load_state_dict(load_model.state_dict())

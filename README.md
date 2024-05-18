@@ -4,6 +4,10 @@ ControlLoRA Version 3 is a neural network structure extended from [ControlNet](h
 
 Inspired by [ControlLoRA](https://github.com/HighCWu/ControlLoRA), [control-lora-v2](https://github.com/HighCWu/control-lora-v2) and script [train_controlnet.py](https://github.com/huggingface/diffusers/blob/main/examples/controlnet/train_controlnet.py) from [diffusers](https://github.com/huggingface/diffusers), [control-lora-v3](https://github.com/lavinal712/control-lora-v3) does not add new features, but provides a [PEFT](https://github.com/huggingface/peft) implement of ControlLoRA.
 
+## News
+
+- [x] May. 19, 2024. Add [DoRA](https://arxiv.org/abs/2402.09353).
+
 ## Data
 
 To train ControlLoRA, you should have image-conditioning_image-text datasets. Of course you can hardly train on [LAION-5B](https://openxlab.org.cn/datasets/OpenDataLab/LAION-5B) dataset in direct like Stable Diffusion. Here are some:
