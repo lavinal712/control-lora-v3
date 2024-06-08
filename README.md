@@ -6,6 +6,7 @@ Inspired by [ControlLoRA](https://github.com/HighCWu/ControlLoRA), [control-lora
 
 ## News
 
+- [x] Jun. 08, 2024. Norm layer is trainable. 
 - [x] May. 19, 2024. Add [DoRA](https://arxiv.org/abs/2402.09353).
 
 ## Data
