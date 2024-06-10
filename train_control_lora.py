@@ -68,17 +68,17 @@ check_min_version("0.27.0.dev0")
 
 logger = get_logger(__name__)
 
-TARGET_MODULE = ["to_q", "to_k", "to_v","to_out.0", "to_out.0", "ff.net.0.proj", "ff.net.2", "proj_in", "proj_out",
-                 "conv", "conv1", "conv2", "conv_in", "conv_shortcut", "linear_1", "linear_2", "time_emb_proj"]
-SAVE_MODULE = ["controlnet_cond_embedding.conv_in", "controlnet_cond_embedding.blocks.0",
-               "controlnet_cond_embedding.blocks.1", "controlnet_cond_embedding.blocks.2",
-               "controlnet_cond_embedding.blocks.3", "controlnet_cond_embedding.blocks.4",
-               "controlnet_cond_embedding.blocks.5", "controlnet_cond_embedding.conv_out",
-               "controlnet_down_blocks.0", "controlnet_down_blocks.1", "controlnet_down_blocks.2",
-               "controlnet_down_blocks.3", "controlnet_down_blocks.4", "controlnet_down_blocks.5",
-               "controlnet_down_blocks.6", "controlnet_down_blocks.7", "controlnet_down_blocks.8",
-               "controlnet_down_blocks.9", "controlnet_down_blocks.10", "controlnet_down_blocks.11",
-               "controlnet_mid_block", "norm", "norm1", "norm2", "norm3"]
+TARGET_MODULES = ["to_q", "to_k", "to_v","to_out.0", "to_out.0", "ff.net.0.proj", "ff.net.2", "proj_in", "proj_out",
+                  "conv", "conv1", "conv2", "conv_in", "conv_shortcut", "linear_1", "linear_2", "time_emb_proj"]
+SAVE_MODULES = ["controlnet_cond_embedding.conv_in", "controlnet_cond_embedding.blocks.0",
+                "controlnet_cond_embedding.blocks.1", "controlnet_cond_embedding.blocks.2",
+                "controlnet_cond_embedding.blocks.3", "controlnet_cond_embedding.blocks.4",
+                "controlnet_cond_embedding.blocks.5", "controlnet_cond_embedding.conv_out",
+                "controlnet_down_blocks.0", "controlnet_down_blocks.1", "controlnet_down_blocks.2",
+                "controlnet_down_blocks.3", "controlnet_down_blocks.4", "controlnet_down_blocks.5",
+                "controlnet_down_blocks.6", "controlnet_down_blocks.7", "controlnet_down_blocks.8",
+                "controlnet_down_blocks.9", "controlnet_down_blocks.10", "controlnet_down_blocks.11",
+                "controlnet_mid_block", "norm", "norm1", "norm2", "norm3"]
 
 
 def image_grid(imgs, rows, cols):
@@ -858,10 +858,10 @@ def main(args):
         config = LoraConfig(
             r=args.lora_r,
             lora_alpha=args.lora_alpha,
-            target_modules=TARGET_MODULE,
+            target_modules=TARGET_MODULES,
             lora_dropout=args.lora_dropout,
             bias=args.lora_bias,
-            modules_to_save=SAVE_MODULE,
+            modules_to_save=SAVE_MODULES,
             use_dora=args.use_dora,
         )
         controlnet = get_peft_model(controlnet, config)
