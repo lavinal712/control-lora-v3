@@ -68,7 +68,7 @@ check_min_version("0.27.0.dev0")
 
 logger = get_logger(__name__)
 
-TARGET_MODULES = ["to_q", "to_k", "to_v","to_out.0", "to_out.0", "ff.net.0.proj", "ff.net.2", "proj_in", "proj_out",
+TARGET_MODULES = ["to_q", "to_k", "to_v", "to_out.0", "ff.net.0.proj", "ff.net.2", "proj_in", "proj_out",
                   "conv", "conv1", "conv2", "conv_in", "conv_shortcut", "linear_1", "linear_2", "time_emb_proj"]
 SAVE_MODULES = ["controlnet_cond_embedding.conv_in", "controlnet_cond_embedding.blocks.0",
                 "controlnet_cond_embedding.blocks.1", "controlnet_cond_embedding.blocks.2",
