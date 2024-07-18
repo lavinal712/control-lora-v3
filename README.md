@@ -90,7 +90,7 @@ accelerate launch train_control_lora.py \
  --report_to wandb \
  --use_lora \
  --lora_r=32 \
- --custom_dataset="fill50k"
+ --custom_dataset="custom_datasets.tutorial.MyDataset"
 ```
 
 ## Merge
