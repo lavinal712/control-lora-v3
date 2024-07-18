@@ -56,7 +56,7 @@ To train ControlLoRA, add `--use_lora` in start command to activate it.
 ```bash
 accelerate launch train_control_lora.py \
  --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" \
- --output_dir="control_lora-model" \
+ --output_dir="control-lora-model" \
  --dataset_name="fusing/fill50k" \
  --resolution=512 \
  --learning_rate=1e-4 \
@@ -75,7 +75,7 @@ You can also train ControlLoRA / ControlNet with your own dataset.
 ```bash
 accelerate launch train_control_lora.py \
  --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" \
- --output_dir="control_lora-model" \
+ --output_dir="control-lora-model" \
  --conditioning_image_column="hint" \
  --image_column="jpg" \
  --caption_column="txt" \
