@@ -278,7 +278,7 @@ def parse_args(input_args=None):
         "--controlnet_model_name_or_path",
         type=str,
         default=None,
-        help="Path to pretrained control-lora model or model identifier from huggingface.co/models."
+        help="Path to pretrained controlnet model or model identifier from huggingface.co/models."
         " If not specified control-lora weights are initialized from unet.",
     )
     parser.add_argument(
@@ -848,10 +848,10 @@ def main(args):
     )
 
     if args.controlnet_model_name_or_path:
-        logger.info("Loading existing control-lora weights")
+        logger.info("Loading existing controlnet weights")
         controlnet = ControlNetModel.from_pretrained(args.controlnet_model_name_or_path)
     else:
-        logger.info("Initializing control-lora weights from unet")
+        logger.info("Initializing controlnet weights from unet")
         controlnet = ControlNetModel.from_unet(unet)
 
     if args.use_lora:
