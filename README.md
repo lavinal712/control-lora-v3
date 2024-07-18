@@ -74,7 +74,7 @@ You can also train ControlLoRA / ControlNet with your own dataset.
 
 ```bash
 accelerate launch train_control_lora.py \
- --pretrained_model_name_or_path="stable-diffusion-v1-5" \
+ --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" \
  --output_dir="control_lora-model" \
  --conditioning_image_column="hint" \
  --image_column="jpg" \
