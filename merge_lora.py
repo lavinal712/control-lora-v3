@@ -1,18 +1,37 @@
-import torch
+import argparse
 
-import diffusers
 from diffusers import UNet2DConditionModel, ControlNetModel
 from peft import PeftModel
 
 
-base_model = "runwayml/stable-diffusion-v1-5"
-controlnet_save_path = "save/path"
+if __name__ == "__main__":
+    args = argparse.ArgumentParser()
 
-unet = UNet2DConditionModel.from_pretrained(
-    base_model, subfolder="unet", torch_dtype=torch.float16
-)
+    args.add_argument(
+        "--base_model",
+        type=str,
+        default="runwayml/stable-diffusion-v1-5",
+        help="Path to pretrained model or model identifier from huggingface.co/models.",
+    )
+    args.add_argument(
+        "--control_lora",
+        type=str,
+        default=None,
+        required=True,
+        help="Path to control-lora model.",
+    )
+    args.add_argument(
+        "--output_dir",
+        type=str,
+        default=None,
+        required=True,
+        help="Path to save ControlNet model.",
+    )
 
-controlnet = ControlNetModel.from_unet(unet)
-controlnet = PeftModel.from_pretrained(controlnet, "controlnet")
-merged_controlnet = controlnet.merge_and_unload()
-merged_controlnet.save_pretrained(controlnet_save_path)
+    args = parser.parse_args()
+
+    unet = UNet2DConditionModel.from_pretrained(base_model, subfolder="unet")
+    controlnet = ControlNetModel.from_unet(unet)
+    controlnet = PeftModel.from_pretrained(controlnet, "control-lora")
+    controlnet = controlnet.merge_and_unload()
+    controlnet.save_pretrained(args.output_dir)

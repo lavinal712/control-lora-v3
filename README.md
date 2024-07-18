@@ -6,6 +6,7 @@ Inspired by [ControlLoRA](https://github.com/HighCWu/ControlLoRA), [control-lora
 
 ## News
 
+- [x] Jul. 18, 2024. Add convert script for WebUI.
 - [x] Jun. 08, 2024. Norm layer is trainable. 
 - [x] May. 19, 2024. Add [DoRA](https://arxiv.org/abs/2402.09353).
 
@@ -62,7 +63,7 @@ accelerate launch train_control_lora.py \
  --learning_rate=1e-4 \
  --train_batch_size=4 \
  --max_train_steps=100000 \
- --tracker_project_name="control_lora" \
+ --tracker_project_name="control-lora" \
  --checkpointing_steps=5000 \
  --validation_steps=5000 \
  --report_to wandb \
@@ -84,7 +85,7 @@ accelerate launch train_control_lora.py \
  --train_batch_size=4 \
  --num_train_epochs=3 \
  --max_train_steps=100000 \
- --tracker_project_name="control_lora" \
+ --tracker_project_name="control-lora" \
  --checkpointing_steps=5000 \
  --validation_steps=5000 \
  --report_to wandb \
@@ -95,10 +96,18 @@ accelerate launch train_control_lora.py \
 
 ## Merge
 
-If you want to train ControlNet, you have already got it. If you got a lora, merge it!
+If you want to merge ControlLoRA to ControlNet, use [merge_lora.py](https://github.com/lavinal712/control-lora-v3/blob/main/merge_lora.py) script.
 
 ```bash
-python merge_lora.py
+python merge_lora.py --control_lora /path/to/control-lora --output_dir /path/to/save/ControlNet
+```
+
+## Convert
+
+Now you can convert ControlLoRA weight from HuggingFace diffusers type to Stable Diffusion type. The converted model can be used in AUTOMATIC1111's [Stable Diffusion web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui).
+
+```bash
+python convert_diffusers.py --adapter_model /path/to/adapter/model --output_model /path/to/output/model
 ```
 
 ## Test
