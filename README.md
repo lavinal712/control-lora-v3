@@ -6,7 +6,7 @@ Inspired by [ControlLoRA](https://github.com/HighCWu/ControlLoRA), [control-lora
 
 ## News
 
-- [x] Jul. 18, 2024. Add convert script for WebUI.
+- [x] Jul. 18, 2024. Add convert script for [WebUI](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0).
 - [x] Jun. 08, 2024. Norm layer is trainable. 
 - [x] May. 19, 2024. Add [DoRA](https://arxiv.org/abs/2402.09353).
 
@@ -23,9 +23,7 @@ To train ControlLoRA, you should have image-conditioning_image-text datasets. Of
 
 [Stable Diffusion v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5) is the base model.
 
-[Stable Diffusion v1-4](https://huggingface.co/CompVis/stable-diffusion-v1-4), [Stable Diffusion v2-1](https://huggingface.co/stabilityai/stable-diffusion-2-1) need to be vertified.
-
-[Stable Diffusion XL](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) needs to be vertified, but probably does not work.
+[Stable Diffusion v1-4](https://huggingface.co/CompVis/stable-diffusion-v1-4), [Stable Diffusion v2-1](https://huggingface.co/stabilityai/stable-diffusion-2-1), [Stable Diffusion XL](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) need to be vertified.
 
 ## Train
 
