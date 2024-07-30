@@ -119,9 +119,9 @@ if __name__ == "__main__":
     import argparse
     from safetensors.torch import load_file, save_file
 
-    args = argparse.ArgumentParser()
-    args.add_argument("--adapter_model", type=str, default=None, required=True)
-    args.add_argument("--output_model", type=str, efault=None, required=True)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--adapter_model", type=str, default=None, required=True)
+    parser.add_argument("--output_model", type=str, default=None, required=True)
     args = parser.parse_args()
 
     state_dict = load_file(args.adapter_model)
