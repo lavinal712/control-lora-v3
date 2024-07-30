@@ -18,6 +18,7 @@ To train ControlLoRA, you should have image-conditioning_image-text datasets. Of
 - [HighCWu/diffusiondb_2m_first_5k_canny](https://huggingface.co/datasets/HighCWu/diffusiondb_2m_first_5k_canny). A small canny dataset. Here is [poloclub/diffusiondb](https://huggingface.co/datasets/poloclub/diffusiondb) dataset. For canny condition, you can easily generate your own dataset.
 - [Nahrawy/VIDIT-Depth-ControlNet](https://huggingface.co/datasets/Nahrawy/VIDIT-Depth-ControlNet). Depth map? Heat map? But it is good!
 - [SaffalPoosh/scribble_controlnet_dataset](https://huggingface.co/datasets/SaffalPoosh/scribble_controlnet_dataset). Many duplicate images. I suggest you synthesize your dataset.
+- [lavinal712/SAM-LLAVA-55k-canny](https://huggingface.co/datasets/lavinal712/SAM-LLAVA-55k-canny). A canny dataset with detail caption.
 
 ## Model
 
