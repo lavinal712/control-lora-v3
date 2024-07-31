@@ -110,6 +110,12 @@ def convert_from_diffuser_lora_state_dict(lora_state_dict):
             new_k = new_k.replace("time_embedding.linear_1", "time_embed.0")
         elif "time_embedding.linear_2" in new_k:
             new_k = new_k.replace("time_embedding.linear_2", "time_embed.2")
+        if "base_layer" in new_k:
+            new_k = new_k.replace("base_layer.", "")
+        elif "modules_to_save" in new_k:
+            new_k = new_k.replace("modules_to_save.", "")
+        elif "original_module" in new_k:
+            continue
         new_state_dict[new_k] = v
     new_state_dict["lora_controlnet"] = torch.tensor([])
     return new_state_dict
