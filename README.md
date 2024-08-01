@@ -2,11 +2,11 @@
 
 ControlLoRA Version 3 is a neural network structure extended from [ControlNet](https://github.com/lllyasviel/ControlNet) to control diffusion models by adding extra conditions.
 
-Inspired by [ControlLoRA](https://github.com/HighCWu/ControlLoRA), [control-lora-v2](https://github.com/HighCWu/control-lora-v2) and script [train_controlnet.py](https://github.com/huggingface/diffusers/blob/main/examples/controlnet/train_controlnet.py) from [diffusers](https://github.com/huggingface/diffusers), [control-lora-v3](https://github.com/lavinal712/control-lora-v3) does not add new features, but provides a [PEFT](https://github.com/huggingface/peft) implement of ControlLoRA.
+Inspired by [control-lora](https://huggingface.co/stabilityai/control-lora) (StabilityAi), [ControlLoRA](https://github.com/HighCWu/ControlLoRA), [control-lora-v2](https://github.com/HighCWu/control-lora-v2) and script [train_controlnet.py](https://github.com/huggingface/diffusers/blob/main/examples/controlnet/train_controlnet.py) from [diffusers](https://github.com/huggingface/diffusers), [control-lora-v3](https://github.com/lavinal712/control-lora-v3) does not add new features, but provides a [PEFT](https://github.com/huggingface/peft) implement of ControlLoRA.
 
 ## News
 
-- [x] Jul. 18, 2024. Add convert script for [WebUI](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0).
+- [x] Jul. 18, 2024. Add convert script for [WebUI](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0). (Jul. 31, 2024. Bug fixed.)
 - [x] Jun. 08, 2024. Norm layer is trainable. 
 - [x] May. 19, 2024. Add [DoRA](https://arxiv.org/abs/2402.09353).
 
@@ -20,11 +20,17 @@ To train ControlLoRA, you should have image-conditioning_image-text datasets. Of
 - [SaffalPoosh/scribble_controlnet_dataset](https://huggingface.co/datasets/SaffalPoosh/scribble_controlnet_dataset). Many duplicate images. I suggest you synthesize your dataset.
 - [lavinal712/SAM-LLAVA-55k-canny](https://huggingface.co/datasets/lavinal712/SAM-LLAVA-55k-canny). A canny dataset with detail caption.
 
-## Model
+## Models
+
+### Stable Diffusion
 
 [Stable Diffusion v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5) is the base model.
 
 [Stable Diffusion v1-4](https://huggingface.co/CompVis/stable-diffusion-v1-4), [Stable Diffusion v2-1](https://huggingface.co/stabilityai/stable-diffusion-2-1), [Stable Diffusion XL](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) need to be vertified.
+
+### control-lora-v3
+
+- [lavinal712/sd-control-lora-canny-v3](https://huggingface.co/lavinal712/sd-control-lora-canny-v3). Canny condition model trained on [lavinal712/SAM-LLAVA-55k-canny](https://huggingface.co/datasets/lavinal712/SAM-LLAVA-55k-canny) with 50000 steps, including converted ControlLoRA model, merged ControlNet model and original adapter model.
 
 ## Train
 
@@ -98,12 +104,14 @@ accelerate launch train_control_lora.py \
 If you want to merge ControlLoRA to ControlNet, use [merge_lora.py](https://github.com/lavinal712/control-lora-v3/blob/main/merge_lora.py) script.
 
 ```bash
-python merge_lora.py --control_lora /path/to/control-lora --output_dir /path/to/save/ControlNet
+python merge_lora.py --base_model runwayml/stable-diffusion-v1-5 --control_lora /path/to/control-lora --output_dir /path/to/save/ControlNet
 ```
 
 ## Convert
 
-Now you can convert ControlLoRA weight from HuggingFace diffusers type to Stable Diffusion type. The converted model can be used in AUTOMATIC1111's [Stable Diffusion web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui).
+Now you can convert ControlLoRA weight from HuggingFace diffusers type to Stable Diffusion type. The converted model can be used in AUTOMATIC1111's [Stable Diffusion web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) and [ComfyUI](https://github.com/comfyanonymous/ComfyUI).
+
+PS: ControlLoRA should set `--lora_bias="all"` in training script.
 
 ```bash
 python convert_diffusers.py --adapter_model /path/to/adapter/model --output_model /path/to/output/model
