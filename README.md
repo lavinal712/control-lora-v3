@@ -73,7 +73,8 @@ accelerate launch train_control_lora.py \
  --validation_steps=5000 \
  --report_to wandb \
  --use_lora \
- --lora_r=32
+ --lora_r=32 \
+ --lora_bias="all"
 ```
 
 You can also train ControlLoRA / ControlNet with your own dataset.
@@ -96,6 +97,7 @@ accelerate launch train_control_lora.py \
  --report_to wandb \
  --use_lora \
  --lora_r=32 \
+ --lora_bias="all" \
  --custom_dataset="custom_datasets.tutorial.MyDataset"
 ```
 
