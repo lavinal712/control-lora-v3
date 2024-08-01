@@ -28,7 +28,7 @@ To train ControlLoRA, you should have image-conditioning_image-text datasets. Of
 
 [Stable Diffusion v1-4](https://huggingface.co/CompVis/stable-diffusion-v1-4), [Stable Diffusion v2-1](https://huggingface.co/stabilityai/stable-diffusion-2-1), [Stable Diffusion XL](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) need to be vertified.
 
-### control-lora-v3
+### ControlLoRA
 
 - [lavinal712/sd-control-lora-canny-v3](https://huggingface.co/lavinal712/sd-control-lora-canny-v3). Canny condition model trained on [lavinal712/SAM-LLAVA-55k-canny](https://huggingface.co/datasets/lavinal712/SAM-LLAVA-55k-canny) with 50000 steps, including converted ControlLoRA model, merged ControlNet model and original adapter model.
 
