@@ -2,7 +2,7 @@
 
 ControlLoRA Version 3 is a neural network structure extended from [ControlNet](https://github.com/lllyasviel/ControlNet) to control diffusion models by adding extra conditions.
 
-Inspired by [control-lora](https://huggingface.co/stabilityai/control-lora) (StabilityAi), [ControlLoRA](https://github.com/HighCWu/ControlLoRA), [control-lora-v2](https://github.com/HighCWu/control-lora-v2) and script [train_controlnet.py](https://github.com/huggingface/diffusers/blob/main/examples/controlnet/train_controlnet.py) from [diffusers](https://github.com/huggingface/diffusers), [control-lora-v3](https://github.com/lavinal712/control-lora-v3) does not add new features, but provides a [PEFT](https://github.com/huggingface/peft) implement of ControlLoRA.
+Inspired by [control-lora](https://huggingface.co/stabilityai/control-lora) (StabilityAI), [ControlLoRA](https://github.com/HighCWu/ControlLoRA), [control-lora-v2](https://github.com/HighCWu/control-lora-v2) and script [train_controlnet.py](https://github.com/huggingface/diffusers/blob/main/examples/controlnet/train_controlnet.py) from [diffusers](https://github.com/huggingface/diffusers), [control-lora-v3](https://github.com/lavinal712/control-lora-v3) does not add new features, but provides a [PEFT](https://github.com/huggingface/peft) implement of ControlLoRA.
 
 ## News
 
