@@ -24,7 +24,7 @@ To train ControlLoRA, you should have image-conditioning_image-text datasets. Of
 
 ### Stable Diffusion
 
-[Stable Diffusion v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5) is the base model.
+[Stable Diffusion v1-5](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5) is the base model.
 
 [Stable Diffusion v1-4](https://huggingface.co/CompVis/stable-diffusion-v1-4), [Stable Diffusion v2-1](https://huggingface.co/stabilityai/stable-diffusion-2-1), [Stable Diffusion XL](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) need to be vertified.
 
@@ -42,7 +42,7 @@ By observation, training 50000 steps with batch size of 4 is the balance between
 
 ```bash
 accelerate launch train_control_lora.py \
- --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" \
+ --pretrained_model_name_or_path="stable-diffusion-v1-5/stable-diffusion-v1-5" \
  --output_dir="controlnet-model" \
  --dataset_name="fusing/fill50k" \
  --resolution=512 \
@@ -61,7 +61,7 @@ To train ControlLoRA, add `--use_lora` in start command to activate it.
 
 ```bash
 accelerate launch train_control_lora.py \
- --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" \
+ --pretrained_model_name_or_path="stable-diffusion-v1-5/stable-diffusion-v1-5" \
  --output_dir="control-lora-model" \
  --dataset_name="fusing/fill50k" \
  --resolution=512 \
@@ -81,7 +81,7 @@ You can also train ControlLoRA / ControlNet with your own dataset.
 
 ```bash
 accelerate launch train_control_lora.py \
- --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" \
+ --pretrained_model_name_or_path="stable-diffusion-v1-5/stable-diffusion-v1-5" \
  --output_dir="control-lora-model" \
  --conditioning_image_column="hint" \
  --image_column="jpg" \
@@ -106,7 +106,7 @@ accelerate launch train_control_lora.py \
 If you want to merge ControlLoRA to ControlNet, use [merge_lora.py](https://github.com/lavinal712/control-lora-v3/blob/main/merge_lora.py) script.
 
 ```bash
-python merge_lora.py --base_model runwayml/stable-diffusion-v1-5 --control_lora /path/to/control-lora --output_dir /path/to/save/ControlNet
+python merge_lora.py --base_model stable-diffusion-v1-5/stable-diffusion-v1-5 --control_lora /path/to/control-lora --output_dir /path/to/save/ControlNet
 ```
 
 ## Convert
