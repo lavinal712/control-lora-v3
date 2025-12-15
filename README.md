@@ -6,6 +6,7 @@ Inspired by [control-lora](https://huggingface.co/stabilityai/control-lora) (Sta
 
 ## News
 
+- [x] Dec. 15, 2025. [diffusers](https://github.com/huggingface/diffusers) supports control-lora.
 - [x] Jul. 18, 2024. Add convert script for [WebUI](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0). (Jul. 31, 2024. Bug fixed.)
 - [x] Jun. 08, 2024. Norm layer is trainable. 
 - [x] May. 19, 2024. Add [DoRA](https://arxiv.org/abs/2402.09353).
